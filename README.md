@@ -1,5 +1,9 @@
 ### Hi there 👋
 
+- 🔭 I’m currently working on personal projects (web and data visualization)
+- 🌱 I’m currently learning Python
+- 📫 How to reach me: [LinkedIn](www.linkedin.com/in/danielalazzara)
+
 <!--
 **danielalazzara/danielalazzara** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
