@@ -26,19 +26,22 @@ def replace_null_data(col_names: list) -> None:
 
 
 def plot_graphs():
-    pairing = data[data["type"] == "Pairing"]
-    studying = data[data["type"] == "Studying"]
-    coding = data[data["type"] == "Coding"]
     plt.figure(figsize=(24, 10), dpi=300)
-    ax = pairing.plot(x='date', y='units', label='pairing')
-    studying.plot(x='date', y='units', label='studying', ax=ax, ylabel='units')
-    coding.plot(x='date', y='units', label='coding', ax=ax, ylabel='units')
+    # hue_colors = {"Pairing": "cyan", "Coding": "blue", "Studying": "green"}
+    sns.histplot(
+        data,
+        x="date",
+        hue="type",
+        # palette=hue_colors,
+        palette="bright",
+        hue_order=["Pairing", "Coding", "Studying"],
+        multiple="stack",
+        linewidth=.5,
+    )
+
+    plt.xticks(rotation=70)
+
     plt.savefig("temp_dir/graph_1.png", bbox_inches='tight')
-    plt.close()
-    plt.figure(figsize=(15, 15), dpi=300)
-    ax = sns.scatterplot(x="date", y="cumulative_units", data=data)
-    plt.xticks(rotation=65)
-    plt.savefig("temp_dir/graph_2.png", bbox_inches='tight')
     plt.close()
 
 

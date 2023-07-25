@@ -34,7 +34,7 @@ jobs:
           mkdir -p temp_dir
           wget ${{ env.raw-csv-file }} -P temp_dir
           python update_readme.py
-          cat ../README.md
+          cp temp_dir/*.png graphs
       - name: Commit and push if changed
         run: |-
           git diff

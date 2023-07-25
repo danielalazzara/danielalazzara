@@ -4,6 +4,8 @@
 - 🌱 I’m currently learning Python
 - 📫 How to reach me: [LinkedIn](www.linkedin.com/in/danielalazzara)
 
+![graph 1](graphs/graph_1.png)
+
 <!--
 **danielalazzara/danielalazzara** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
