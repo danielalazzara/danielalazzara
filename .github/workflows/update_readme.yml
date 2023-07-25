@@ -1,0 +1,45 @@
+# A simple workflow to automate updating README.md in the magic repo markgreene74/markgreene74
+
+name: update_readme
+
+on:
+  push:
+    branches: [ main ]
+
+  # run the workflow every Sunday at 02:10
+  workflow_dispatch:
+  schedule:
+    - cron: '10 2 * * 0'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      work-dir: .
+      raw-csv-file: "https://raw.githubusercontent.com/danielalazzara/learning_python/main/data/study_data.csv"
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        working-directory: ${{ env.work-dir }}
+        run: |
+          python -m pip install -r requirements.txt
+      - name: Update README
+        working-directory: ${{ env.work-dir }}
+        run: |-
+          mkdir -p temp_dir
+          wget ${{ env.raw-csv-file }} -P temp_dir
+          python update_readme.py
+          cp temp_dir/*.png graphs
+      - name: Commit and push if changed
+        run: |-
+          git diff
+          git config --global user.email "actions@users.noreply.github.com"
+          git config --global user.name "README-bot"
+          git add -A
+          git commit -m "Updated content" || exit 0
+          git push
