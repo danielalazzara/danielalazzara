@@ -27,17 +27,23 @@ def replace_null_data(col_names: list) -> None:
 
 def plot_graphs():
     plt.figure(figsize=(24, 10), dpi=300)
-    # hue_colors = {"Pairing": "cyan", "Coding": "blue", "Studying": "green"}
-    sns.histplot(
+
+    sns.set_context("talk")
+
+    sequential_colors = sns.color_palette("Blues", 3)
+
+    g = sns.histplot(
         data,
         x="date",
         hue="type",
-        # palette=hue_colors,
-        palette="bright",
+        bins=9,
+        palette=sequential_colors,
         hue_order=["Pairing", "Coding", "Studying"],
         multiple="stack",
         linewidth=.5,
     )
+
+    g.figure.suptitle("Progress since 2 January 2022", y=0.92)
 
     plt.xticks(rotation=70)
 
@@ -57,4 +63,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
